@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="jumbo">
+    <h2>Bienvenid@ a TareasFlask</h2>
+    
+  <div class="inicio">
+  	<p>Gestiona y haz el seguimiento de tus tareas pendientes</p>
+    <p class="entrar"><a href="{{ url_for('login') }}">Entrar</a> | <a href="{{ url_for('alta') }}">Registrarse</a></p>
+  </div>
+  </div>
+{% endblock %}
+

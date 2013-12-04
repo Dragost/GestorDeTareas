@@ -1,0 +1,6 @@
+{% macro detalle(tareas) %}
+  <div class="detalle-tarea">
+    <p><strong><a href="{{ url_for('detalle_tarea', tareas_id=tareas.id) }}" > {{ tareas.tarea }}</strong></a> </p>
+    <p></i><strong>Fecha límite:</strong> {{ tareas.fecha_realizacion }}</p>
+  </div>
+{% endmacro %}

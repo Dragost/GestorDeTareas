@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+ 
+{% from 'tareas/macro.html' import detalle %}
+ 
+{% block content %}
+<div class="row">
+<p> Bienvenid@ {{ user.firstname  }}
+
+{% if realizadas or pendientes %}
+		<h3>Tareas pendientes</h3>
+  		{% for pendiente in pendientes %}
+  				<div class="tarea">
+      				{{ detalle(pendiente) }}
+      				<p> <strong>Prioridad:</strong> {{ pendiente.prioridad }}
+   				</div>
+   		{% endfor %}
+   		<h3>Tareas realizadas</h3>
+   		{% for realizada in realizadas %}
+  				<div class="tarea">
+      				{{ detalle(realizada) }}
+   				</div>
+   		{% endfor %}
+ {% else %} 	
+    <h3>No tienes Tareas.</h3>
+ {% endif %}
+</div>
+<div class="center">
+<p><a href="{{ url_for('crear_tareas') }}"> Nueva tarea</a>
+</div>
+{% endblock content %}

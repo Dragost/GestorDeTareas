@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+ 
+{% from 'tareas/macro.html' import detalle %}
+ 
+{% block content %}
+
+ {% for message in form.fecha_realizacion.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+
+{{ detalle(tarea) }}
+
+{% if tarea.terminada %}
+
+<p><strong>Fecha: </strong> {{ tarea.fecha_realizacion}} </p>
+<p><strong>Prioridad: </strong> {{ tarea.prioridad}} </p>
+<p><strong>Descripción: </strong> {{ tarea.descripcion }}</p>
+{% else %}
+
+<form class="tareas" action="{{ url_for('detalle_tarea', tareas_id=tarea.id) }}" method=post>
+    {{ form.hidden_tag() }}
+    
+	{{ form.fecha_realizacion.label }}
+    {{ form.fecha_realizacion }}    
+<p><strong>Terminada: </strong> {{ form.terminada }}</p>    
+<p><strong>Prioridad: </strong> {{ tarea.prioridad}} {{ form.prioridad }} </p>
+<p><strong>Descripción: </strong> {{ tarea.descripcion }}</p>
+
+{{ form.descripcion.label }}
+{{ form.descripcion}}
+<br>
+{{ form.submit }}
+</form>
+{% endif %}
+
+<div class="center">
+	<p class="nueva"><a href="{{ url_for('crear_tareas') }}"> Nueva tarea</a>
+    <p class="eliminar"><a href="{{ url_for('eliminar_tarea', tarea_id=tarea.id) }}"> Eliminar tarea</p>
+    <p class="volver"><a href="{{ url_for('tareas') }}"> Volver a listado</a></p>
+<div>
+   
+{% endblock content %}
